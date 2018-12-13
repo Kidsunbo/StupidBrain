@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d692fd4f-4296-48ab-a16b-5c2dc76aafe8" name="Default Changelist" comment="" />
+    <list default="true" id="d692fd4f-4296-48ab-a16b-5c2dc76aafe8" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/StupidBrain_NoOOP.py" beforeDir="false" afterPath="$PROJECT_DIR$/StupidBrain_NoOOP.py" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -9,7 +13,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/StupidBrain$StupidBrain_NoOOP.coverage" NAME="StupidBrain_NoOOP Coverage Results" MODIFIED="1544636332812" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/StupidBrain$StupidBrain_NoOOP.coverage" NAME="StupidBrain_NoOOP Coverage Results" MODIFIED="1544697181458" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/StupidBrain$StupidBrain.coverage" NAME="StupidBrain Coverage Results" MODIFIED="1544624441289" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="FUSProjectUsageTrigger">
@@ -18,29 +22,32 @@
         <counts>
           <entry key="project.closed" value="2" />
           <entry key="project.open.time.4" value="2" />
-          <entry key="project.opened" value="2" />
+          <entry key="project.open.time.5" value="1" />
+          <entry key="project.opened" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
+          <entry key="csv" value="1" />
           <entry key="py" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
+          <entry key="PLAIN_TEXT" value="1" />
           <entry key="Python" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="8" />
-          <entry key="py" value="2544" />
+          <entry key="py" value="3101" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="PLAIN_TEXT" value="8" />
-          <entry key="Python" value="2544" />
+          <entry key="Python" value="3101" />
         </counts>
       </usages-collector>
     </session>
@@ -50,7 +57,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/StupidBrain.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
+            <state relative-caret-position="3587">
               <caret line="215" column="23" selection-start-line="215" selection-start-column="23" selection-end-line="215" selection-end-column="23" />
               <folding>
                 <element signature="e#0#21#0" expanded="true" />
@@ -62,7 +69,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/StupidBrain_LS.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="331">
+            <state relative-caret-position="4063">
               <caret line="250" column="26" selection-start-line="250" selection-start-column="26" selection-end-line="250" selection-end-column="26" />
               <folding>
                 <element signature="e#0#21#0" expanded="true" />
@@ -74,14 +81,19 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/StupidBrain_NoOOP.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1410">
-              <caret line="5" column="23" lean-forward="true" selection-start-line="5" selection-end-line="6" />
+            <state relative-caret-position="-2611">
+              <caret line="12" column="17" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
               <folding>
-                <marker date="1544637497441" expanded="true" signature="1862:2679" ph="..." />
-                <marker date="1544637497441" expanded="true" signature="6684:6695" ph="..." />
+                <element signature="e#0#21#0" expanded="true" />
+                <marker date="1544697181449" expanded="true" signature="7032:7255" ph="..." />
               </folding>
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/result.csv">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -92,6 +104,9 @@
         <option value="Python Script" />
       </list>
     </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -114,6 +129,7 @@
     <option name="width" value="1440" />
     <option name="height" value="807" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -230,15 +246,15 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1440" height="807" extended-state="6" />
+    <frame x="0" y="23" width="1440" height="807" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2532189" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25679544" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32867134" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32867134" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32867134" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -265,7 +281,7 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/StupidBrain.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
+        <state relative-caret-position="3587">
           <caret line="215" column="23" selection-start-line="215" selection-start-column="23" selection-end-line="215" selection-end-column="23" />
           <folding>
             <element signature="e#0#21#0" expanded="true" />
@@ -275,7 +291,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/StupidBrain_LS.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="331">
+        <state relative-caret-position="4063">
           <caret line="250" column="26" selection-start-line="250" selection-start-column="26" selection-end-line="250" selection-end-column="26" />
           <folding>
             <element signature="e#0#21#0" expanded="true" />
@@ -283,13 +299,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/result.csv">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/StupidBrain_NoOOP.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1410">
-          <caret line="5" column="23" lean-forward="true" selection-start-line="5" selection-end-line="6" />
+        <state relative-caret-position="-2611">
+          <caret line="12" column="17" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
           <folding>
-            <marker date="1544637497441" expanded="true" signature="1862:2679" ph="..." />
-            <marker date="1544637497441" expanded="true" signature="6684:6695" ph="..." />
+            <element signature="e#0#21#0" expanded="true" />
+            <marker date="1544697181449" expanded="true" signature="7032:7255" ph="..." />
           </folding>
         </state>
       </provider>

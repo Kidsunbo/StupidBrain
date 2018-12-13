@@ -10,11 +10,11 @@ from itertools import cycle
 Start global variable
 '''
 scale = "RGB"
-isFlatten = True
+isFlatten = False
 input_dim = 750000 if scale=="RGB" else 250000
 questions = ("0",)
 batch_size = 32
-
+test_data_prepared = False
 '''
 End global variable
 '''
@@ -95,6 +95,7 @@ def get_data_generator(all_folder):
     global test_x
     global test_y
     global steps_per_epoch
+    global test_data_prepared
 
     img_name_all, labels_all = read_csv(all_folder+"train/annotations.csv")
     img_names = []
@@ -107,25 +108,29 @@ def get_data_generator(all_folder):
     train_x_name, test_x_name, train_y_label, test_y_label = sklearn.model_selection.train_test_split(img_names,
                                                                                         labels,
                                                                                         test_size=0.1)
-    print(len(train_x_name),len(test_x_name))
-    test_x_temp = []
-    test_y_temp = []
-    print("Prepare test data...")
-    for i, test_name in enumerate(test_x_name):
-        if test_name.split("_")[0] != "2":
-            test_x_temp.append(read_img(all_folder + "/train/", test_name + ".png", scale=scale, isFlatten=isFlatten))
-        else:
-            test_y_temp.append(remove_background(
-                background_img_full=all_folder + "/train/" + test_name + ",png",
-                seg_img_full=all_folder + "/seg/" + "0" + test_name + ".png",
-                scale=scale, to_flatten=isFlatten
-            ))
-        test_y_temp.append(test_y_label[i])
-    test_x = np.array(test_x_temp)
-    test_y = np.array(test_y_temp)
+    if not test_data_prepared:
+        print(len(train_x_name),len(test_x_name))
+        test_x_temp = []
+        test_y_temp = []
+        print("Prepare test data...")
+        for i, test_name in enumerate(test_x_name):
+            if test_name.split("_")[0] != "2":
+                test_x_temp.append(read_img(all_folder + "/train/", test_name + ".png", scale=scale, isFlatten=isFlatten))
+            else:
+                test_y_temp.append(remove_background(
+                    background_img_full=all_folder + "/train/" + test_name + ",png",
+                    seg_img_full=all_folder + "/seg/" + "0" + test_name + ".png",
+                    scale=scale, to_flatten=isFlatten
+                ))
+            test_y_temp.append(test_y_label[i])
+        test_x = np.array(test_x_temp)
+        test_y = np.array(test_y_temp)
+        test_data_prepared = not test_data_prepared
+        print("Test data has been prepared")
 
     print("Prepare train data...")
     while True:
+        print("hello")
         img_output = []
         labels_output = []
         steps_per_epoch = len(train_x_name)//batch_size+1
@@ -139,12 +144,12 @@ def get_data_generator(all_folder):
                     scale=scale,to_flatten=isFlatten
                 ))
             labels_output.append(train_y_label[i])
-            if i%(batch_size+1) == batch_size:
+            if i%(batch_size) == batch_size-1:
                 yield np.array(img_output),np.array(labels_output)
                 img_output = []
                 labels_output=[]
         yield np.array(img_output), np.array(labels_output)
-
+next(get_data_generator("/Users/sunbo/Downloads/all/"))
 
 
 def build_model():
@@ -180,16 +185,24 @@ def build_cnn_model():
     return model
 
 
-def write_to_csv(X,result):
-    pass
+def write_to_csv(test_x_names:list,result:list):
+    with open("result.csv",'w') as f:
+        for i, name in enumerate(test_x_names):
+            if name.endswith(".png"):
+                name = name[:-4]
+            f.write(name+","+",".join(map(str,result[i]))+"\n")
 
 if __name__ == '__main__':
 
     # build_cnn_model().fit(train_x,train_y,batch_size=32,validation_data=(test_x,test_y),epochs=3)
     # next(get_data_generator("/Users/sunbo/Downloads/all/"))
     # get_data("../input/train/")
+    g = get_data_generator("/Users/sunbo/Downloads/all/")
+    build_cnn_model().fit_generator(g,steps_per_epoch=steps_per_epoch,validation_data=(test_x,test_y))
 
-    next(get_data_generator("/Users/sunbo/Downloads/all/"))
-
-    print(len(train_x),len(train_y),len(test_x),len(test_y))
+    # print(len(train_x),len(train_y),len(test_x),len(test_y))
     # build_model().fit(train_x,train_y,validation_data=(test_x, test_y), epochs=3)
+
+    test_x = ["file1","file1","file1"]
+    result = [[1,2,3],[3,1,2],[3,2,1]]
+    write_to_csv(test_x,result)
