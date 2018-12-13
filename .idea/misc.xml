@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+<<<<<<< HEAD
+=======
+  <component name="JavaScriptSettings">
+    <option name="languageLevel" value="ES6" />
+  </component>
+>>>>>>> 04d303e837019413c4967506a408973f937cb886
   <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.6 (StupidBrain)" project-jdk-type="Python SDK" />
 </project>
