@@ -3,7 +3,6 @@ import numpy as np
 import pandas as pd
 import tensorflow as tf
 import sklearn.model_selection
-from itertools import cycle
 
 
 '''
@@ -15,6 +14,7 @@ input_dim = 750000 if scale=="RGB" else 250000
 questions = ("0",)
 batch_size = 32
 test_data_prepared = False
+
 '''
 End global variable
 '''
@@ -37,6 +37,8 @@ def read_img(path: str, img_name, *, scale='RGB', isFlatten=isFlatten):
     if isFlatten:
         result = np.array(img).reshape(-1)
     else:
+        image_region = (100, 100, 400, 400)
+        img = img.resize((180, 180), box=image_region)
         result = np.array(img)
     return result
 
@@ -82,7 +84,7 @@ def get_data(all_folder,questions = questions):
                 img_data.append(read_img(all_folder+"/train/",name+".png",scale=scale,isFlatten=isFlatten))
             else:
                 img_data.append(remove_background(
-                    background_img_full=all_folder+"/train/"+name+",png",
+                    background_img_full=all_folder+"/train/"+name+".png",
                     seg_img_full=all_folder+"/seg/"+"0"+name+".png",
                     scale=scale,to_flatten=isFlatten
                 ))
@@ -118,7 +120,7 @@ def get_data_generator(all_folder):
                 test_x_temp.append(read_img(all_folder + "/train/", test_name + ".png", scale=scale, isFlatten=isFlatten))
             else:
                 test_y_temp.append(remove_background(
-                    background_img_full=all_folder + "/train/" + test_name + ",png",
+                    background_img_full=all_folder + "/train/" + test_name + ".png",
                     seg_img_full=all_folder + "/seg/" + "0" + test_name + ".png",
                     scale=scale, to_flatten=isFlatten
                 ))
@@ -139,7 +141,7 @@ def get_data_generator(all_folder):
                 img_output.append(read_img(all_folder+"/train/",name+".png",scale=scale,isFlatten=isFlatten))
             else:
                 img_output.append(remove_background(
-                    background_img_full=all_folder+"/train/"+name+",png",
+                    background_img_full=all_folder+"/train/"+name+".png",
                     seg_img_full=all_folder+"/seg/"+"0"+name+".png",
                     scale=scale,to_flatten=isFlatten
                 ))
@@ -170,17 +172,19 @@ def build_model():
 
 def build_cnn_model():
     model = tf.keras.Sequential()
-    model.add(
-        tf.keras.layers.Conv2D(32, (3, 3), activation='relu', input_shape=(500, 500, 3), data_format="channels_last"))
+    model.add(tf.keras.layers.Conv2D(32, (5, 5), activation='relu', input_shape=(180, 180, 3)))
+    model.add(tf.keras.layers.Conv2D(32, (5, 5), activation='relu'))
+    model.add(tf.keras.layers.MaxPooling2D(pool_size=(3, 3)))
+    model.add(tf.keras.layers.Conv2D(64, (3, 3), activation='relu'))
     model.add(tf.keras.layers.Conv2D(64, (3, 3), activation='relu'))
     model.add(tf.keras.layers.MaxPooling2D(pool_size=(2, 2)))
-    model.add(tf.keras.layers.Conv2D(128, (3, 3), activation='relu'))
-    model.add(tf.keras.layers.Conv2D(128, (3, 3), activation='relu'))
     model.add(tf.keras.layers.Flatten())
-    model.add(tf.keras.layers.Dense(32, activation='relu'))
-    model.add(
-        tf.keras.layers.Dense(4, activation='linear', kernel_initializer='random_uniform', bias_initializer='zeros'))
-    model.compile(loss='mse', optimizer='rmsprop', metrics=['accuracy'])
+    model.add(tf.keras.layers.Dense(256, activation='relu'))
+    model.add(tf.keras.layers.Dense(4, activation='linear'))
+    # rms = tf.keras.optimizers.RMSprop(lr=0.001, rho=0.9, epsilon=None, decay=0.001)
+    adam = tf.keras.optimizers.Adam(0.002, 0.9, 0.999)
+    # sgd = keras.optimizers.SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True)
+    model.compile(loss='mse', optimizer=adam, metrics=["rmse"])
     model.summary()
     return model
 
